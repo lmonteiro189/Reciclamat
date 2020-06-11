@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.scss';
 
 class Comment extends Component {
   constructor(props) {
@@ -24,22 +25,16 @@ class Comment extends Component {
 
   render() {
     return (
-      <div>
+      <div className="comment-container">
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Do you want to contact this user?
-            <textarea
-              value={this.state.message}
-              onChange={this.handleChange}
-              placeholder="Write your comment here"
-              cols="30"
-              rows="4"
-            ></textarea>
-          </label>
-          <input type="submit" value="Submit" />
-          {/* <button onClick={} type="submit">
-            Submit
-          </button> */}
+          <textarea
+            value={this.state.message}
+            onChange={this.handleChange}
+            placeholder="Write your comment here"
+            cols="30"
+            rows="4"
+          ></textarea>
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
