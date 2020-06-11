@@ -1,14 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
 
 .profile-container {
   margin-top: 2em;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   h6,
   small,
   p {
@@ -23,16 +20,18 @@ body {
   }
 
   .user-data {
-    text-align: center;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
-    flex-direction: center;
+    align-items: center;
   }
   .box {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   .edit {
@@ -42,6 +41,7 @@ body {
     background-color: #2fb86e;
     border-radius: 5px;
     font-size: 1em;
+    width: 100px;
 
     &:active {
       position: relative;
@@ -56,15 +56,30 @@ body {
     background-color: transparent;
   }
   .user-avatar {
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
     margin-bottom: 0.5em;
+    object-fit: cover;
   }
-  .posts {
+  .user-posts {
+    display: flex;
+    width: 250px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .post {
+    display: flex;
+    flex-direction: column;
     font-size: 1em;
     font-weight: 300;
     margin-top: 1em;
     text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
   }
 }

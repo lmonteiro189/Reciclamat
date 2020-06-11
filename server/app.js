@@ -20,6 +20,8 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(express.static(join(__dirname, '../client/build')));
+
 //CORS config
 app.use(
   cors({
@@ -56,6 +58,10 @@ app.use('/api/comment', commentRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/authentication', authenticationRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '../client/build/index.html'));
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

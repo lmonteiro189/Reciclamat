@@ -1,0 +1,25 @@
+.comment-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  form {
+    margin: 10px;
+    padding: 10px;
+    button {
+      padding: 2px 30px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #2fb86e;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1em;
+      border: 1px solid #2fb86e;
+    }
+    textarea {
+      margin: 0;
+      border-color: #c7c7c7;
+    }
+  }
+}
