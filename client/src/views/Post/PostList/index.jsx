@@ -16,7 +16,11 @@ const PostList = () => {
   };
 
   const receiveComment = (message, postid) => {
-    addComment({ message, userCreator: '5ee0eb371457bc1e5cf71e48', post: postid }).then(() => {
+    addComment({
+      message,
+      userCreator: '5ee0eb371457bc1e5cf71e48',
+      post: postid
+    }).then(() => {
       posts.forEach((post) => {
         if (post._id === postid) {
           post.comment.push({ message });

@@ -25,6 +25,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
   }
   .box {
     display: flex;
@@ -61,12 +62,14 @@
     border-radius: 50px;
     margin-bottom: 0.5em;
     object-fit: cover;
+    
   }
   .user-posts {
     display: flex;
     width: 250px;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-top: 20px;
   }
   .post {
     display: flex;
