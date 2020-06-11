@@ -21,12 +21,7 @@ const cors = require('cors');
 const app = express();
 
 //CORS config
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-  })
-);
+app.use(cors());
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());

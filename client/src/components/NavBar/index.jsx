@@ -36,7 +36,11 @@ const NavBar = (props) => {
             <Nav.Link href={`/profile/${userId}`}>Profile</Nav.Link>
             <Nav.Link href="/post/add">Create Post</Nav.Link>
             <Nav.Link href="/search">Search Materials</Nav.Link>
-            <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+            {props.loggedUser ? (
+              <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+            ) : (
+              <Nav.Link href="/signin">Sign in</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

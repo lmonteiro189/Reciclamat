@@ -16,7 +16,11 @@ const PostList = () => {
   };
 
   const receiveComment = (message, postid) => {
-    addComment({ message, userCreator: '5ee0eb371457bc1e5cf71e48', post: postid }).then(() => {
+    addComment({
+      message,
+      userCreator: '5ee0eb371457bc1e5cf71e48',
+      post: postid
+    }).then(() => {
       posts.forEach((post) => {
         if (post._id === postid) {
           post.comment.push({ message });
@@ -27,7 +31,7 @@ const PostList = () => {
   };
 
   useEffect(() => {
-    console.log('ola')
+    console.log('ola');
     setLoading(true);
     listPosts('produtos').then((res) => {
       setLoading(false);
@@ -70,7 +74,11 @@ const PostList = () => {
             return (
               <div key={post._id} className="social-post">
                 <div className="photo-name-post">
-                  <img src={post.userCreator.avatar} alt="" className="user-image" />
+                  <img
+                    src={post.userCreator.avatar}
+                    alt=""
+                    className="user-image"
+                  />
                   <p className="post-creator">{post.userCreator.name}</p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
@@ -78,9 +86,10 @@ const PostList = () => {
                 <p className="post-description">{post.description}</p>
                 {post.comment.map((comment) => {
                   return (
-                  <div className="comment" key={comment._id}>
-                    <p>{comment.message}</p>
-                  </div>);
+                    <div className="comment" key={comment._id}>
+                      <p>{comment.message}</p>
+                    </div>
+                  );
                 })}
                 <Comment receiveComment={receiveComment} postId={post._id} />
               </div>

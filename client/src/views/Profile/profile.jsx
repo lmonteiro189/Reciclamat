@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.scss';
 import { getUser } from '../../services/user';
+import { deletePost } from '../../services/posts';
 
 //CRIAR CONDICIONAL, SE OWNER, VER OPCAO DE EDITAR PERFIL.
 
@@ -26,6 +27,15 @@ const Profile = (props) => {
     }
   }, [props]);
 
+  function handleDeletePost(postId) {
+    deletePost(postId).then(() => {
+      setUser({
+        ...user,
+        posts: user.posts.filter((post) => post._id !== postId)
+      });
+    });
+  }
+
   return (
     <div className="profile-container">
       <section className="box">
@@ -41,7 +51,7 @@ const Profile = (props) => {
               <div className="post">
                 <img src={post.image} />
                 <p>{post.description}</p>
-                {isOwner && <button className="edit">Donated</button>}
+                {isOwner && <button className="edit" onClick={()=> handleDeletePost(post._id)}>Donated</button>}
               </div>
             );
           })}
