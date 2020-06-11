@@ -35,6 +35,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.loggedUser);
     return (
       <div className="App">
         <BrowserRouter>
