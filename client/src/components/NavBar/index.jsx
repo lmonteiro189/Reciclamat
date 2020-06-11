@@ -12,14 +12,14 @@ const NavBar = (props) => {
     if (props && props.loggedUser) {
       const { _id } = props.loggedUser;
       setUserId(_id);
-      console.log(_id);
+      // console.log(_id);
     }
   }, [props]);
 
   const logout = () => {
     signOut()
       .then(() => {
-        console.log('deslogou');
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);

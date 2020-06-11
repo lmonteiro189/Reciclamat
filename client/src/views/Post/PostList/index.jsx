@@ -27,7 +27,7 @@ const PostList = () => {
   };
 
   useEffect(() => {
-    console.log('ola')
+    // console.log('ola');
     setLoading(true);
     listPosts('produtos').then((res) => {
       setLoading(false);
@@ -63,7 +63,7 @@ const PostList = () => {
         </button>
       </div>
       <div class="posts">
-        {isLoading ? (
+        {!isLoading ? (
           <small>loading...</small>
         ) : (
           posts.map((post) => {
@@ -78,9 +78,10 @@ const PostList = () => {
                 <p className="post-description">{post.description}</p>
                 {post.comment.map((comment) => {
                   return (
-                  <div className="comment" key={comment._id}>
-                    <p>{comment.message}</p>
-                  </div>);
+                    <div className="comment" key={comment._id}>
+                      <p>{comment.message}</p>
+                    </div>
+                  );
                 })}
                 <Comment receiveComment={receiveComment} postId={post._id} />
               </div>
