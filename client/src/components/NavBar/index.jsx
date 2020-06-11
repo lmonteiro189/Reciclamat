@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './style.scss';
 import { signOut } from '../../services/authentication';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,10 +33,18 @@ const NavBar = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/posts">Posts</Nav.Link>
-            <Nav.Link href={`/profile/${userId}`}>Profile</Nav.Link>
-            <Nav.Link href="/post/add">Create Post</Nav.Link>
-            <Nav.Link href="/search">Search Materials</Nav.Link>
+            <Nav.Link>
+              <Link to="/posts">Posts</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to={`/profile/${userId}`}>Profile</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/post/add">Create Post</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/search">Search Materials</Link>
+            </Nav.Link>
             <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
