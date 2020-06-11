@@ -3,6 +3,7 @@ import { listPosts } from './../../../services/posts';
 import { addComment } from './../../../services/comment';
 import Comment from './../../../components/Comment';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const PostList = () => {
   const [isLoading, setLoading] = useState(true);
@@ -31,7 +32,6 @@ const PostList = () => {
   };
 
   useEffect(() => {
-    console.log('ola');
     setLoading(true);
     listPosts('produtos').then((res) => {
       setLoading(false);
@@ -79,7 +79,7 @@ const PostList = () => {
                     alt=""
                     className="user-image"
                   />
-                  <p className="post-creator">{post.userCreator.name}</p>
+                  <p className="post-creator"><Link to={`/profile/${post.userCreator._id}`}>{post.userCreator.name}</Link></p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
                 <small>{post.kind}</small>

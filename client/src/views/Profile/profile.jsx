@@ -14,7 +14,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     getUser(props.match.params.id).then((res) => {
-      console.log(res);
+      res.posts = res.posts.filter(post => post.kind !== 'produtos');
       setUser(res);
     });
   }, []);
