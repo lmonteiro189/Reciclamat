@@ -13,8 +13,6 @@ const PostCreate = (props) => {
     kind: 'produtos'
   });
 
-  useEffect(() => {console.log(props)}, [props])
-
   const handleFormData = (name, value) => {
     const data = { ...formData };
     console.log(name, value);
@@ -49,7 +47,7 @@ const PostCreate = (props) => {
   };
 
   const handleSubmitForm = () => {
-    createPost({ ...formData, userCreator: props.loggedUser });
+    createPost({ ...formData, userCreator: props.loggedUser._id });
   };
 
   return (
