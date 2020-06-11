@@ -6,11 +6,22 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const uploader = require('../config/uploader');
 
-router.get('/', function (req, res, next) {
-  const kind = req.query.kind;
-  const userCreator = req.query.userCreator;
+router.get('/', (req, res, next) => {
+  const { kind, materials, userId } = req.query;
+  const filter = {};
 
-  Post.find(kind ? { kind } : {})
+  if (kind) {
+    filter.kind = kind;
+  }
+  if (materials && materials.length) {
+    filter.material = { $in: materials };
+  }
+
+  if (userId) {
+    filter.userCreator = { userId };
+  }
+
+  Post.find(filter)
     .sort({ 'timestamps.updatedAt': -1 })
     .populate('userCreator')
     .populate('comment')
@@ -18,13 +29,6 @@ router.get('/', function (req, res, next) {
       res.json(posts);
     })
     .catch((error) => next(error));
-
-  //   Post.find({ _id: userCreator })
-  //   .then((response)=> {
-  //     res.json(message: 'POST USER API')
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
 });
 
 router.post('/', uploader.single('image'), (req, res, next) => {

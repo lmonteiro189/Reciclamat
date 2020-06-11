@@ -16,9 +16,11 @@ const authenticationRouter = require('./routes/authentication');
 const commentRouter = require('./routes/comment');
 const postRouter = require('./routes/post');
 const usersRouter = require('./routes/user');
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors());
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
