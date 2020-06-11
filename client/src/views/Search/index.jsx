@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import './style.scss';
 
 //ADD MAP BELOW (line 39 )IT'S COMMENTED OUT FOR NOW
@@ -33,17 +33,11 @@ const Search = () => {
   return (
     <div className="search-container">
       <section className="buttons-container">
-        <button
-          className={kind === 'doar' && 'selected'}
-          onClick={() => handleType('doar')}
-        >
+        <button className={kind === 'doar' && 'selected'} onClick={() => handleType('doar')}>
           Donate
         </button>
         <div className="divider"></div>
-        <button
-          className={kind === 'receber' && 'selected'}
-          onClick={() => handleType('receber')}
-        >
+        <button className={kind === 'receber' && 'selected'} onClick={() => handleType('receber')}>
           Receive
         </button>
       </section>
