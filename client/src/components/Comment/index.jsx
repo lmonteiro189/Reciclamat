@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { addComment } from './../../services/comment';
-import { Form } from 'react-bootstrap';
 
 class Comment extends Component {
   constructor(props) {

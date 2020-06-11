@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
-// import { Link } from 'react-router-dom';
+import { signOut } from '../../services/authentication';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 const NavBar = (props) => {
   const [userId, setUserId] = useState('');
@@ -15,6 +15,16 @@ const NavBar = (props) => {
     }
   }, [props]);
 
+  const logout = () => {
+    signOut()
+      .then(() => {
+        console.log('deslogou');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="nav-container">
       <Navbar collapseOnSelect expand="lg" variant="dark">
@@ -26,7 +36,7 @@ const NavBar = (props) => {
             <Nav.Link href={`/profile/${userId}`}>Profile</Nav.Link>
             <Nav.Link href="/post/add">Create Post</Nav.Link>
             <Nav.Link href="/search">Search Materials</Nav.Link>
-            <Nav.Link href="/">Sign out</Nav.Link>
+            <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
