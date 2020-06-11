@@ -1,56 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 
 //ADD MAP BELOW (line 39 )IT'S COMMENTED OUT FOR NOW
 import SimpleMap from './../../../src/components/Map/SimpleMap';
 import { listPosts } from './../../services/posts';
-import './style.scss';
+import Materials from './../../components/Materials';
 
-class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: []
-    };
-  }
+const Search = () => {
+  const [posts, setPosts] = useState([]);
+  const [kind, setKind] = useState('doar');
+  const [selectedMaterials, setSelectedMaterials] = useState([]);
 
-  componentDidMount() {
-    this.fetchPostData();
-  }
-
-  fetchPostData() {
-    listPosts()
+  useEffect(() => {
+    listPosts(kind, selectedMaterials)
       .then((response) => {
         console.log(response);
-        this.setState({
-          posts: response
-        });
+        setPosts(response);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
-  render() {
-    const postList = this.state.posts;
-    return (
-      <div>
-        <h3>Posts related to search</h3>
+  }, [kind, selectedMaterials]);
 
-        {/* <SimpleMap /> */}
-        {postList.map((post) => {
-          return (
-            <div className="post-box" key={post._id}>
-              <img src={post.image} alt="" />
-              <p>
-                <strong>{post.userCreator.name}</strong>
-              </p>
-              <p>{post.description}</p>
-            </div>
-          );
-        })}
-        {/* <h1>Página Search</h1> */}
+  const handleType = (type) => {
+    setKind(type);
+  };
+
+  const handleMaterials = (materials) => {
+    setSelectedMaterials(materials);
+  };
+
+  return (
+    <div className="search-container">
+      <section className="buttons-container">
+        <button className={kind === 'doar' && 'selected'} onClick={() => handleType('doar')}>
+          Donate
+        </button>
+        <div className="divider"></div>
+        <button className={kind === 'receber' && 'selected'} onClick={() => handleType('receber')}>
+          Receive
+        </button>
+      </section>
+      <Materials multiple={true} handleMaterials={handleMaterials} />
+      <div className="map-container">
+        <SimpleMap />
       </div>
-    );
-  }
-}
+      {posts.map((post) => {
+        console.log(post);
+        return (
+          <div className="post-box" key={post._id}>
+            <img src={post.userCreator.avatar} alt="" />
+            <div className="user-data">
+              <strong>{post.userCreator.name}</strong>
+              <p>{post.material}</p>
+            </div>
+          </div>
+        );
+      })}
+      {/* <h1>Página Search</h1> */}
+    </div>
+  );
+};
 export default Search;

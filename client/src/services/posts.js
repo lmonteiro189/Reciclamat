@@ -4,9 +4,9 @@ const basePostsServices = axios.create({
   baseURL: 'http://localhost:3010/api/posts'
 });
 
-const listPosts = (kind) => {
+const listPosts = (kind, materials) => {
   return basePostsServices
-    .get('', { params: { kind } })
+    .get('', { params: { kind, materials } })
     .then((res) => {
       return Promise.resolve(res.data);
     })
@@ -27,9 +27,8 @@ const createPost = (post) => {
     data.append('material', post.material);
   }
   data.append('kind', post.kind);
-  data.append('userCreator', '5edf6ebef58e6848f4c3a0e8');
+  data.append('userCreator', post.userCreator);
   data.append('location', post.location.join(','));
-
 
   return basePostsServices
     .post('', data)

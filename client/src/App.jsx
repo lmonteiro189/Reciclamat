@@ -10,7 +10,7 @@ import Search from './views/Search/index';
 import './App.scss';
 import AuthenticationSignUp from './views/Authentication/SignUp/sign-up';
 import AuthenticationSignIn from './views/Authentication/SignIn/sign-in';
-
+import ProtectedRoute from './components/Route-guard/protect-route';
 import { loadAuthenticatedUser } from './services/authentication';
 
 class App extends Component {
@@ -35,10 +35,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.loggedUser);
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar />
+          <Navbar loggedUser={this.state.loggedUser} />
           <Switch>
             <Route
               path="/signin"
@@ -48,9 +49,16 @@ class App extends Component {
               path="/signup"
               render={(props) => <AuthenticationSignUp {...props} updateUser={this.updateUser} />}
             />
+            {/* <ProtectedRoute exact path="/posts" component={PostList} redirect={'/signup'} /> */}
             <Route exact path="/posts" component={PostList} />
-            <Route exact path="/post/add" component={PostCreate} />
-            <Route exact path="/profile/:id" component={Profile} />
+            <Route
+              path="/post/add"
+              render={(props) => <PostCreate {...props} loggedUser={this.state.loggedUser} />}
+            />
+            <Route
+              path="/profile/:id"
+              render={(props) => <Profile {...props} loggedUser={this.state.loggedUser} />}
+            />
             <Route exact path="/search" component={Search} />
             <Route exact path="/" component={LandingPage} />
           </Switch>

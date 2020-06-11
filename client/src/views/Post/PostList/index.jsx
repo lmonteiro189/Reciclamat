@@ -27,6 +27,7 @@ const PostList = () => {
   };
 
   useEffect(() => {
+    console.log('ola')
     setLoading(true);
     listPosts('produtos').then((res) => {
       setLoading(false);

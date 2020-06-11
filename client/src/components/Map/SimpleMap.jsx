@@ -12,8 +12,8 @@ class SimpleMap extends Component {
         lng: null
       },
       initialPosition: {
-        lat: 0,
-        lng: 0
+        lat: 38,
+        lng: -9
       }
     };
   }
