@@ -1,0 +1,126 @@
+.social-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 56px);
+  
+  .buttons-container {
+    background-color: #2fb86e;
+    display: flex;
+    align-items: center;
+    
+    .divider {
+      border-left: 1px solid #fff;
+      height: 20px;
+    }
+    
+    button {
+      width: 33%;
+      height: 40px;
+      border: none;
+      background-color: #2fb86e;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.8em;
+      
+      &:hover {
+        background-color: #55d18f;
+        color: #000;
+      }
+    }
+    
+    .selected {
+      background-color: #23a760 !important;
+      color: #fff !important;
+    }
+  }
+  
+  .posts {
+    
+    .social-post {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      padding: 10px;
+      background-color: #fff;
+      margin-bottom: 20px;
+      border: 1px solid #d3d3d3;
+      
+      .post-image {
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      
+      .photo-name-post {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        
+        .user-image {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 50px;
+          margin-right: 10px;
+        }
+        
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    align-items: center;
+    
+    .buttons-container {
+      margin: 30px;
+      width: 602px;
+      justify-content: space-evenly;
+      background-color: #fff;
+      border: 1px solid #2fb86e;
+      border-radius: 10px;
+      
+      .divider {
+        border-left: 1px solid #2fb86e;
+      }
+
+      button {
+        width: 200px;
+        color: #2fb86e;
+        background-color: transparent;
+        
+        &:last-child {
+          border-radius: 0 10px 10px 0;
+        }
+        
+        &:first-child {
+          border-radius: 10px 0 0 10px;
+        }
+      }
+
+      .donate-btn {
+        border-color: #2fb86e;
+      }
+    }
+    
+    .posts {
+      width: 90%;
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      .social-post {
+        width: 100%;
+        padding: 30px 50px;
+        
+        .post-image {
+          height: 500px;
+        }
+      }
+    }
+  }
+}

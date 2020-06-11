@@ -1,0 +1,115 @@
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap');
+
+.post-create-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  .button-section {
+    background-color: #2fb86e;
+    padding: 5px 0;
+    button {
+      width: 33%;
+      height: 30px;
+      border: none;
+      background-color: #2fb86e;
+      color: white;
+      z-index: 4;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1em;
+      z-index: 3;
+    }
+  }
+  form {
+    margin-top: 0;
+  }
+  // .span {
+  //   padding-left: 1em;
+  //   padding-right: 1em;
+  //   position: relative; //to center buttons
+  //   top: 20%;
+  //   left: 15%;
+  //   margin-left: auto;
+  // }
+
+  // .button-section {
+  //   display: flex;
+  //   flex-direction: row;
+  // }
+
+  .post-add-buttons:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+  }
+
+  // button {
+  //     a {
+  //       color: white;
+  //       text-decoration: none;
+  //     }
+  //   }
+
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.8em;
+    text-align: center;
+    padding-top: 1em;
+  }
+
+  .location {
+    margin-top: 2em;
+    text-align: center;
+  }
+  .post {
+    margin-top: 1em;
+    color: #fff;
+    background-color: #2fb86e;
+    width: 140px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2fb86e;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    z-index: 3;
+  }
+
+  .post:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+  }
+
+  .post-pos {
+    position: relative; //to center buttons
+    left: 40%;
+    padding-bottom: 2em;
+    display: inline;
+  }
+
+  .location-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    .map-container {
+      display: flex;
+      align-self: center;
+      width: 100%;
+      height: 300px;
+      border-radius: 20px;
+    }
+  }
+
+  .post-button {
+    margin: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2fb86e;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+  }
+}

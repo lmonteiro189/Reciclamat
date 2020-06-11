@@ -1,0 +1,111 @@
+.materials-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .materials-row {
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    .box {
+      width: 80px;
+      height: 80px;
+      padding: 10px;
+      border: 1px solid grey;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 80%;
+        height: 80%;
+      }
+      &.selected{
+        background-color: #E1FAEC;
+        border-color: rgb(104, 202, 146);
+      }
+    }
+  }
+}
+
+/* 
+
+
+.materials-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+
+  .materials-row {
+    width: 100%;
+    display: flex;
+      .material-img {
+        vertical-align: top;
+        border-radius: 5px;
+        width: 80px;
+        height: 80px;
+        box-shadow: 5px 5px 15px grey;
+          img {
+            width: 10px;
+            padding: 5px;
+          }
+      }
+  }
+  
+  .material-name {
+    text-align: center;
+    color: #2fb86e;
+    font-size: 1em;
+    font-weight: 500;
+    // display: block;
+    clear: left;
+    margin-top: 10px;
+    width: inherit;
+  }
+  
+  .box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50px;
+  }
+}
+ */
+
+// .material-name {
+//   display: inline;
+//   text-align: center;
+// }
+
+// .materials-container {
+//   margin: 0;
+//   padding: 0;
+// }
+// .materials {
+//   width: 100%;
+//   flex-wrap: wrap;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   .card {
+//     width: 150px;
+//   }
+//   .card-body {
+//     padding: 5px;
+//   }
+// }
+// .post-add-buttons {
+//   background-color: #2fb86e;
+//   border-color: #2fb86e;
+// }
+
+// @media only screen and (min-width: 600px) {
+//   .box {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
