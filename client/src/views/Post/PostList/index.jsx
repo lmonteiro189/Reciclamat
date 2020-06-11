@@ -77,7 +77,10 @@ const PostList = () => {
                 <small>{post.kind}</small>
                 <p className="post-description">{post.description}</p>
                 {post.comment.map((comment) => {
-                  return <p key={comment._id}>{comment.message}</p>;
+                  return (
+                  <div className="comment" key={comment._id}>
+                    <p>{comment.message}</p>
+                  </div>);
                 })}
                 <Comment receiveComment={receiveComment} postId={post._id} />
               </div>

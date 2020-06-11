@@ -31,20 +31,18 @@ const Profile = (props) => {
       <section className="box">
         <div className="user-data">
           <h6 className="user-name"> {user.name}</h6>
-          <div className="box-img">
-            <img className="user-avatar" src={user.avatar} />
-          </div>
+          <img className="user-avatar" src={user.avatar} />
           <small className="contact">Contact | {user.email}</small>
           {isOwner && <button className="edit">Edit Profile</button>}
         </div>
-        <div>
+        <div className="user-posts">
           {user.posts?.map((post) => {
             return (
-              <>
-                <img src={post.image} style={{width: '200px', height: '200px'}} />
+              <div className="post">
+                <img src={post.image} />
                 <p>{post.description}</p>
                 {isOwner && <button className="edit">Donated</button>}
-              </>
+              </div>
             );
           })}
         </div>
