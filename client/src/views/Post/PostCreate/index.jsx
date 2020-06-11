@@ -4,6 +4,7 @@ import { createPost } from '../../../services/posts';
 import PostProducts from './../../../components/CreateProducts';
 import PostMaterials from './../../../components/Materials';
 import './style.scss';
+import { useEffect } from 'react';
 
 const PostCreate = (props) => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const PostCreate = (props) => {
     location: [0, 0],
     kind: 'produtos'
   });
+
+  useEffect(() => {console.log(props)}, [props])
 
   const handleFormData = (name, value) => {
     const data = { ...formData };

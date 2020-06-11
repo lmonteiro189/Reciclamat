@@ -2,63 +2,53 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.scss';
+import { getUser } from '../../services/user';
 
 //CRIAR CONDICIONAL, SE OWNER, VER OPCAO DE EDITAR PERFIL.
 
-const Profile = () => {
+const Profile = (props) => {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const [user, setUser] = useState({});
+  const [isOwner, setIsOwner] = useState(false);
 
-  const fetchData = () => {
-    setLoading(true);
-    axios
-      .get('http://localhost:3010/api/users')
-      .then((data) => {
-        setData(data.data.user[0]);
-        setLoading(false);
-        console.log(data.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  useEffect(() => fetchData(), []);
+  useEffect(() => {
+    getUser(props.match.params.id).then((res) => {
+      console.log(res);
+      setUser(res);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (props.loggedUser) {
+      setIsOwner(
+        props.loggedUser._id.toString() == props.match.params.id.toString()
+      );
+    }
+  }, [props]);
 
   return (
     <div className="profile-container">
       <section className="box">
         <div className="user-data">
-          <h6 className="user-name"> {data.name}</h6>
+          <h6 className="user-name"> {user.name}</h6>
           <div className="box-img">
-            <img className="user-avatar" src={data.avatar} />
+            <img className="user-avatar" src={user.avatar} />
           </div>
-          <small className="contact">Contact | {data.email}</small>
-          <button className="edit">Edit Profile</button>
+          <small className="contact">Contact | {user.email}</small>
+          {isOwner && <button className="edit">Edit Profile</button>}
         </div>
-        <p className="posts">Published </p>
+        <div>
+          {user.posts?.map((post) => {
+            return (
+              <>
+                <img src={post.image} style={{width: '200px', height: '200px'}} />
+                <p>{post.description}</p>
+                {isOwner && <button className="edit">Donated</button>}
+              </>
+            );
+          })}
+        </div>
       </section>
-      {/* <p></p> */}
-      {/* {isLoading ? ( */}
-      {/* <small>loading...</small> */}
-      {/* ) : ( */}
-      {/* {data.user[0]} */}
-      {/* map((user) => {
-          return (
-            <div className="box" key={user._id}>
-              <img src={user.avatar} alt="" />
-              <div>
-                <h5>{user.name}</h5>
-                <small>Contact: {user.email}</small>
-                <button className="edit">Edit Profile</button>
-              </div>
-            </div>
-          );
-        })
-      )}
-      <div>
-        <p>My items:</p> */}
-      {/* <button className="delete">Delete</button> */}
-      {/* </div> */}
     </div>
   );
 };

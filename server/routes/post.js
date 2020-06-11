@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
   }
 
   if (userId) {
-    filter.userCreator = { userId };
+    filter.userCreator = userId;
   }
 
   Post.find(filter)
