@@ -10,7 +10,7 @@ import Search from './views/Search/index';
 import './App.scss';
 import AuthenticationSignUp from './views/Authentication/SignUp/sign-up';
 import AuthenticationSignIn from './views/Authentication/SignIn/sign-in';
-
+import ProtectedRoute from './components/Route-guard/protect-route';
 import { loadAuthenticatedUser } from './services/authentication';
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
               path="/signup"
               render={(props) => <AuthenticationSignUp {...props} updateUser={this.updateUser} />}
             />
-            <Route exact path="/posts" component={PostList} />
+            <ProtectedRoute exact path="/posts" component={PostList} redirect={'/signup'} />
             <Route exact path="/post/add" component={PostCreate} />
             <Route exact path="/profile/:id" component={Profile} />
             <Route exact path="/search" component={Search} />
