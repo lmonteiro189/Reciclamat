@@ -19,6 +19,8 @@ const usersRouter = require('./routes/user');
 
 const app = express();
 
+app.use(express.static(join(__dirname, '../client/build')));
+
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
@@ -48,6 +50,10 @@ app.use('/api/comment', commentRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/authentication', authenticationRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '../client/build/index.html'));
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
