@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 
 import { signIn } from '../../../services/authentication';
 
