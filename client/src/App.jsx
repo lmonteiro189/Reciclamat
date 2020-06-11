@@ -6,7 +6,6 @@ import PostList from './views/Post/PostList';
 import PostCreate from './views/Post/PostCreate';
 import Profile from './views/Profile/profile';
 import Search from './views/Search/index';
-// import SimpleMap from './components/SimpleMap';
 import './App.scss';
 import AuthenticationSignUp from './views/Authentication/SignUp/sign-up';
 import AuthenticationSignIn from './views/Authentication/SignIn/sign-in';
@@ -49,17 +48,30 @@ class App extends Component {
               path="/signup"
               render={(props) => <AuthenticationSignUp {...props} updateUser={this.updateUser} />}
             />
-            {/* <ProtectedRoute exact path="/posts" component={PostList} redirect={'/signup'} /> */}
-            <Route exact path="/posts" component={PostList} />
-            <Route
+            <ProtectedRoute
+              path="/posts"
+              authorized={this.state.loggedUser}
+              redirect={'/signup'}
+              render={(props) => <PostList {...props} loggedUser={this.state.loggedUser} />}
+            />
+            <ProtectedRoute
               path="/post/add"
+              authorized={this.state.loggedUser}
+              redirect={'/signup'}
               render={(props) => <PostCreate {...props} loggedUser={this.state.loggedUser} />}
             />
-            <Route
+            <ProtectedRoute
               path="/profile/:id"
+              authorized={this.state.loggedUser}
+              redirect={'/signup'}
               render={(props) => <Profile {...props} loggedUser={this.state.loggedUser} />}
             />
-            <Route exact path="/search" component={Search} />
+            <ProtectedRoute
+              path="/search"
+              authorized={this.state.loggedUser}
+              redirect={'/signup'}
+              render={(props) => <Search {...props} loggedUser={this.state.loggedUser} />}
+            />
             <Route exact path="/" component={LandingPage} />
           </Switch>
         </BrowserRouter>
