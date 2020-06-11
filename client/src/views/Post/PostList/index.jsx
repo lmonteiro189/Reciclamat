@@ -49,7 +49,7 @@ const PostList = () => {
         >
           Produtos
         </button>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <button
           onClick={handleKindSubmit}
           name="doar"
@@ -57,7 +57,7 @@ const PostList = () => {
         >
           Doando
         </button>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <button
           onClick={handleKindSubmit}
           name="receber"
@@ -66,7 +66,7 @@ const PostList = () => {
           Recebendo
         </button>
       </div>
-      <div class="posts">
+      <div className="posts">
         {isLoading ? (
           <small>loading...</small>
         ) : (
@@ -79,7 +79,11 @@ const PostList = () => {
                     alt=""
                     className="user-image"
                   />
-                  <p className="post-creator"><Link to={`/profile/${post.userCreator._id}`}>{post.userCreator.name}</Link></p>
+                  <p className="post-creator">
+                    <Link to={`/profile/${post.userCreator._id}`}>
+                      {post.userCreator.name}
+                    </Link>
+                  </p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
                 <small>{post.kind}</small>

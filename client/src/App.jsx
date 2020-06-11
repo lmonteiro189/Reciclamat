@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar loggedUser={this.state.loggedUser} />
+          <Navbar loggedUser={this.state.loggedUser} {...this.props} />
           <Switch>
             <Route
               path="/signin"
@@ -48,7 +48,11 @@ class App extends Component {
               path="/signup"
               render={(props) => <AuthenticationSignUp {...props} updateUser={this.updateUser} />}
             />
-            <ProtectedRoute
+            <Route
+              path="/signout"
+              render={(props) => <LandingPage {...props} updateUser={this.updateUser} />}
+            />
+            <Route
               path="/posts"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
