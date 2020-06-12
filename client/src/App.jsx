@@ -6,6 +6,7 @@ import PostList from './views/Post/PostList';
 import PostCreate from './views/Post/PostCreate';
 import Profile from './views/Profile/profile';
 import Search from './views/Search/index';
+import EditProfile from './views/Profile/EditProfile';
 import './App.scss';
 import AuthenticationSignUp from './views/Authentication/SignUp/sign-up';
 import AuthenticationSignIn from './views/Authentication/SignIn/sign-in';
@@ -77,6 +78,7 @@ class App extends Component {
               render={(props) => <Search {...props} loggedUser={this.state.loggedUser} />}
             />
             <Route exact path="/" component={LandingPage} />
+            {/* <Route exact path="/profile/edit/:id" component={EditProfile}*/}
           </Switch>
         </BrowserRouter>
       </div>

@@ -42,9 +42,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     if (props.loggedUser) {
-      setIsOwner(
-        props.loggedUser._id.toString() == props.match.params.id.toString()
-      );
+      setIsOwner(props.loggedUser._id.toString() == props.match.params.id.toString());
     }
   }, [props]);
 
@@ -71,6 +69,7 @@ const Profile = (props) => {
           <img className="user-avatar" src={user.avatar} />
           <small className="contact">Contact | {user.email}</small>
           {isOwner && <button className="edit">Edit Profile</button>}
+          {/* <button><Link to="/profile/edit/:id>Edit Profile</Link></button> */}
         </div>
         <div className="user-posts">
           <div className="column">
