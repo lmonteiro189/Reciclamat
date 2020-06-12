@@ -1,7 +1,7 @@
 // 'use strict';
 
-// import React, { Component } from 'react';
-// import './style.scss';
+import React, { Component } from 'react';
+import './style.scss';
 // import { getUser } from '../../services/user';
 // import axios from 'axios';
 
