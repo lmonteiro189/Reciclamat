@@ -12,14 +12,14 @@ const NavBar = (props) => {
     if (props && props.loggedUser) {
       const { _id } = props.loggedUser;
       setUserId(_id);
-      console.log(_id);
+      // console.log(_id);
     }
   }, [props]);
 
   const logout = () => {
     signOut()
       .then(() => {
-        console.log('deslogou');
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,11 @@ const NavBar = (props) => {
             <Nav.Link>
               <Link to="/search">Search Materials</Link>
             </Nav.Link>
-            <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+            {props.loggedUser ? (
+              <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+            ) : (
+              <Nav.Link href="/signin">Sign in</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

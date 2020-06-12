@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const basePostsServices = axios.create({
-  baseURL: 'http://localhost:3010/api/posts'
+  baseURL: '/api/posts'
 });
 
 const listPosts = (kind, materials) => {
@@ -40,15 +40,13 @@ const createPost = (post) => {
       console.log(error);
       return Promise.reject(error);
     });
-
-  /*
-
-  kind:produtos
-  material:aluminum
-  description:post test 2
-  userCreator:5edf6ebef58e6848f4c3a0e8
-  location:30, -9
-  */
 };
 
-export { listPosts, createPost };
+const deletePost = (postId) => {
+  return basePostsServices
+    .delete(`/${postId}`)
+    .then((res) => Promise.resolve(res.data))
+    .catch((error) => Promise.reject(error));
+};
+
+export { listPosts, createPost, deletePost };

@@ -50,4 +50,15 @@ router.post('/', uploader.single('image'), (req, res, next) => {
     });
 });
 
+router.delete('/:id', (req, res, next) => {
+  const postId = req.params.id;
+
+  Post.findByIdAndDelete(postId)
+    .then(() => res.json({ message: 'Post was deleted' }))
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
+});
+
 module.exports = router;

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const baseUsersServices = axios.create({
-  baseURL: 'http://localhost:3010/api/users'
+  baseURL: '/api/users'
 });
 
 

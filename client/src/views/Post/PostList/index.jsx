@@ -3,6 +3,7 @@ import { listPosts } from './../../../services/posts';
 import { addComment } from './../../../services/comment';
 import Comment from './../../../components/Comment';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const PostList = () => {
   const [isLoading, setLoading] = useState(true);
@@ -16,7 +17,11 @@ const PostList = () => {
   };
 
   const receiveComment = (message, postid) => {
-    addComment({ message, userCreator: '5ee0eb371457bc1e5cf71e48', post: postid }).then(() => {
+    addComment({
+      message,
+      userCreator: '5ee0eb371457bc1e5cf71e48',
+      post: postid
+    }).then(() => {
       posts.forEach((post) => {
         if (post._id === postid) {
           post.comment.push({ message });
@@ -27,7 +32,6 @@ const PostList = () => {
   };
 
   useEffect(() => {
-    console.log('ola')
     setLoading(true);
     listPosts('produtos').then((res) => {
       setLoading(false);
@@ -45,7 +49,7 @@ const PostList = () => {
         >
           Produtos
         </button>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <button
           onClick={handleKindSubmit}
           name="doar"
@@ -53,7 +57,7 @@ const PostList = () => {
         >
           Doando
         </button>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <button
           onClick={handleKindSubmit}
           name="receber"
@@ -62,7 +66,7 @@ const PostList = () => {
           Recebendo
         </button>
       </div>
-      <div class="posts">
+      <div className="posts">
         {isLoading ? (
           <small>loading...</small>
         ) : (
@@ -70,17 +74,26 @@ const PostList = () => {
             return (
               <div key={post._id} className="social-post">
                 <div className="photo-name-post">
-                  <img src={post.userCreator.avatar} alt="" className="user-image" />
-                  <p className="post-creator">{post.userCreator.name}</p>
+                  <img
+                    src={post.userCreator.avatar}
+                    alt=""
+                    className="user-image"
+                  />
+                  <p className="post-creator">
+                    <Link to={`/profile/${post.userCreator._id}`}>
+                      {post.userCreator.name}
+                    </Link>
+                  </p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
                 <small>{post.kind}</small>
                 <p className="post-description">{post.description}</p>
                 {post.comment.map((comment) => {
                   return (
-                  <div className="comment" key={comment._id}>
-                    <p>{comment.message}</p>
-                  </div>);
+                    <div className="comment" key={comment._id}>
+                      <p>{comment.message}</p>
+                    </div>
+                  );
                 })}
                 <Comment receiveComment={receiveComment} postId={post._id} />
               </div>

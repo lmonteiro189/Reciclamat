@@ -51,6 +51,7 @@ router.post('/sign-in', (req, res, next) => {
       }
     })
     .catch((error) => {
+      console.log(error);
       next(error);
     });
 });
