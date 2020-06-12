@@ -40,7 +40,7 @@ const NavBar = (props) => {
               <Link to={`/profile/${userId}`}>Profile</Link>
             </Nav.Link>
             <Nav.Link>
-              <Link to="/post/add">Create Post</Link>
+              <Link to="/post/add">Create a Post</Link>
             </Nav.Link>
             <Nav.Link>
               <Link to="/search">Search Materials</Link>

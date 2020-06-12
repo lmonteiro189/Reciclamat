@@ -103,7 +103,6 @@ class App extends Component {
               )}
             />
             <Route exact path="/" component={LandingPage} />
-
           </Switch>
         </BrowserRouter>
       </div>

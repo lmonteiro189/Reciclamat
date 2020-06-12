@@ -51,12 +51,8 @@ const Profile = (props) => {
 
   function handleDeletePost(postId) {
     deletePost(postId).then(() => {
-      const postDonates = user.posts.doando.filter(
-        (post) => post._id !== postId
-      );
-      const postReceive = user.posts.recebendo.filter(
-        (post) => post._id !== postId
-      );
+      const postDonates = user.posts.doando.filter((post) => post._id !== postId);
+      const postReceive = user.posts.recebendo.filter((post) => post._id !== postId);
       setUser({
         ...user,
         posts: { doando: postDonates, recebendo: postReceive }
@@ -80,25 +76,18 @@ const Profile = (props) => {
         </div>
         <div className="user-posts">
           <div className="column">
-            <h3>Doar</h3>
+            <h3>Donate</h3>
             <div className="all-items">
               {user.posts?.doando.map((post) => {
                 return (
                   <div className="material-items">
                     <img
-                      src={
-                        materials.find(
-                          (material) => material.material === post.material
-                        ).image
-                      }
+                      src={materials.find((material) => material.material === post.material).image}
                       className="material-image"
                     />
                     <p>{post.material}</p>
                     {true === true && (
-                      <button
-                        className="edit"
-                        onClick={() => handleDeletePost(post._id)}
-                      >
+                      <button className="edit" onClick={() => handleDeletePost(post._id)}>
                         Donated
                       </button>
                     )}
@@ -108,7 +97,7 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="column">
-            <h3>Receber</h3>
+            <h3>Receive</h3>
             <div className="all-items">
               {user.posts?.recebendo.map((post) => {
                 return (
@@ -116,19 +105,14 @@ const Profile = (props) => {
                     <div className="image-and-material">
                       <img
                         src={
-                          materials.find(
-                            (material) => material.material === post.material
-                          ).image
+                          materials.find((material) => material.material === post.material).image
                         }
                         className="material-image"
                       />
                       <p>{post.material}</p>
                     </div>
                     {true === true && (
-                      <button
-                        className="edit"
-                        onClick={() => handleDeletePost(post._id)}
-                      >
+                      <button className="edit" onClick={() => handleDeletePost(post._id)}>
                         Donated
                       </button>
                     )}
