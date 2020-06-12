@@ -61,7 +61,7 @@ const PostList = (props) => {
                   </p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
-                <small>{post.kind}</small>
+                
                 <p className="post-description">{post.description}</p>
                 {post.comment.map((comment) => {
                   return (

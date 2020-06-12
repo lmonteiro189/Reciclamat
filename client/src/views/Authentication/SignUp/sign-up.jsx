@@ -72,12 +72,14 @@ const AuthenticationSignUp = (props) => {
           Sign up
         </Button>
       </Form>
+      <div className="small-text">
       <small>
         Already a member?{' '}
         <a id="links" href="/signin">
           Sign in!
         </a>
       </small>
+      </div>
     </div>
   );
 };

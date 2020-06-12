@@ -29,7 +29,6 @@ class Comment extends Component {
       <div className="comment-container">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Example textarea</Form.Label>
             <Form.Control
               as="textarea"
               value={this.state.message}
