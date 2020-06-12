@@ -1,9 +1,10 @@
 // 'use strict';
 
 import React, { Component } from 'react';
-import './style.scss';
+import './editprofile.scss';
 import { getUser, updateUser } from '../../services/user';
 import Dropzone from '../../components/DropZone';
+import { Form, Button } from 'react-bootstrap';
 // import axios from 'axios';
 
 class EditProfile extends Component {
@@ -14,8 +15,7 @@ class EditProfile extends Component {
         _id: '',
         name: '',
         email: '',
-        avatar: '',
-
+        avatar: ''
       }
     };
   }
@@ -34,7 +34,7 @@ class EditProfile extends Component {
 
   handleAvatarChange = (file) => {
     const user = { ...this.state.user };
-    console.log(file)
+    console.log(file);
     this.setState({
       user: { ...user, selectedFile: file }
     });
@@ -42,19 +42,20 @@ class EditProfile extends Component {
 
   editUser = (event) => {
     event.preventDefault();
-    console.log(this.state.user)
+    console.log(this.state.user);
     const user = {
       _id: this.state.user._id,
       name: this.state.user.name,
       avatar: this.state.user.selectedFile
     };
-    console.log(user)
+    console.log(user);
 
-    updateUser(user).then(res => this.props.history.push(`/profile/${this.state.user._id}`));
+    updateUser(user).then((res) =>
+      this.props.history.push(`/profile/${this.state.user._id}`)
+    );
   };
 
   handleChange = (event) => {
-   
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -129,31 +130,32 @@ class EditProfile extends Component {
 
   render() {
     return (
-      <div>
-        <br />
+      <div className="edit-profile-container">
         <h3>Edit profile</h3>
-        <form onSubmit={this.editUser}>
-          <div className="user-data">
-            <img className="user-avatar" src={this.state.user.avatar} />
-            <small className="contact">{this.state.user.email}</small>
-            {/* <button><Link to="/profile/edit/:id>Edit Profile</Link></button> */}
-          </div>
-          <div className="avatar-input">
+        <div className="user-data">
+          <img className="user-avatar" src={this.state.user.avatar} />
+          <small className="contact">{this.state.user.email}</small>
+          {/* <button><Link to="/profile/edit/:id>Edit Profile</Link></button> */}
+        </div>
+        <Form onSubmit={this.editUser}>
+          <Form.Group>
             <Dropzone onFileUploaded={this.handleAvatarChange} />
-          </div>
-          <div className="name-input">
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
+              placeholder="name"
               name="name"
-              ref="name"
+              id="name"
               value={this.state.user.name}
               onChange={this.handleChange}
             />
-            <label htmlFor="name">Name</label>
-          </div>
-
-          <input type="submit" value="save" className="btn" />
-        </form>
+          </Form.Group>
+          <Button id="button" size="md" block variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+       
       </div>
     );
   }

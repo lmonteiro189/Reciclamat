@@ -41,31 +41,8 @@ const PostList = () => {
 
   return (
     <div className="social-container">
-      <div className="buttons-container">
-        <button
-          onClick={handleKindSubmit}
-          name="produtos"
-          className={selectedKind === 'produtos' && 'selected'}
-        >
-          Products
-        </button>
-        <div className="divider"></div>
-        <button
-          onClick={handleKindSubmit}
-          name="doar"
-          className={selectedKind === 'doar' && 'selected'}
-        >
-          Donate
-        </button>
-        <div className="divider"></div>
-        <button
-          onClick={handleKindSubmit}
-          name="receber"
-          className={selectedKind === 'receber' && 'selected'}
-        >
-          Receive
-        </button>
-      </div>
+      
+    
       <div className="posts">
         {isLoading ? (
           <small>loading...</small>

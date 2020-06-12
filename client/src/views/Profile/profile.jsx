@@ -42,6 +42,7 @@ const Profile = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log('hey',props,props.match.params.id)
     if (props.loggedUser) {
       setIsOwner(
         props.loggedUser._id.toString() == props.match.params.id.toString()
@@ -76,7 +77,7 @@ const Profile = (props) => {
         </div>
         <div className="user-posts">
           <div className="column">
-            <h3>Donate</h3>
+            <h3>Donating</h3>
             <div className="all-items">
               {user.posts?.doando.map((post) => {
                 return (
@@ -86,7 +87,7 @@ const Profile = (props) => {
                       className="material-image"
                     />
                     <p>{post.material}</p>
-                    {true === true && (
+                    {isOwner && (
                       <button className="edit" onClick={() => handleDeletePost(post._id)}>
                         Donated
                       </button>
@@ -97,7 +98,7 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="column">
-            <h3>Receive</h3>
+            <h3>Receiving</h3>
             <div className="all-items">
               {user.posts?.recebendo.map((post) => {
                 return (
@@ -111,9 +112,9 @@ const Profile = (props) => {
                       />
                       <p>{post.material}</p>
                     </div>
-                    {true === true && (
+                    {isOwner && (
                       <button className="edit" onClick={() => handleDeletePost(post._id)}>
-                        Donated
+                        Received
                       </button>
                     )}
                   </div>

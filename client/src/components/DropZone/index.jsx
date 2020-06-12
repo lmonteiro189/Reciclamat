@@ -30,7 +30,7 @@ const Dropzone = ({ onFileUploaded }) => {
       ) : (
         <p>
           <FiUpload />
-          Drag a profile picture here
+          Drag a picture here
         </p>
       )}
     </div>

@@ -17,7 +17,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      loggedUser: null
+      loggedUser: null,
+      loaded: false
     };
   }
 
@@ -29,7 +30,7 @@ class App extends Component {
     //checked with server if there was a logged in user
     loadAuthenticatedUser()
       .then((user) => {
-        this.setState({ loggedUser: user });
+        this.setState({ loggedUser: user, loaded: true });
       })
       .catch((error) => console.log(error));
   }
@@ -38,73 +39,71 @@ class App extends Component {
     console.log(this.state.loggedUser);
     return (
       <div className="App">
-        <BrowserRouter>
-          <Navbar loggedUser={this.state.loggedUser} {...this.props} />
-          <Switch>
-            <Route
-              path="/signin"
-              render={(props) => (
-                <AuthenticationSignIn {...props} updateUser={this.updateUser} />
-              )}
-            />
-            <Route
-              path="/signup"
-              render={(props) => (
-                <AuthenticationSignUp {...props} updateUser={this.updateUser} />
-              )}
-            />
-            <Route
-              path="/signout"
-              render={(props) => (
-                <LandingPage {...props} updateUser={this.updateUser} />
-              )}
-            />
-            <Route
-              path="/posts"
-              authorized={this.state.loggedUser}
-              redirect={'/signup'}
-              render={(props) => (
-                <PostList {...props} loggedUser={this.state.loggedUser} />
-              )}
-            />
-            <ProtectedRoute
-              path="/post/add"
-              authorized={this.state.loggedUser}
-              redirect={'/signup'}
-              render={(props) => (
-                <PostCreate {...props} loggedUser={this.state.loggedUser} />
-              )}
-            />
-            
-            <Route
-            exact
-              path="/profile/:id"
-              authorized={this.state.loggedUser}
-              redirect={'/signup'}
-              render={(props) => (
-                <Profile {...props} loggedUser={this.state.loggedUser} />
-              )}
-            />
-            <Route
-            exact
-              path="/profile/:id/edit"
-              authorized={this.state.loggedUser}
-              redirect={'/signup'}
-              render={(props) => (
-                <EditProfile {...props} />
-              )}
-            />
-            <ProtectedRoute
-              path="/search"
-              authorized={this.state.loggedUser}
-              redirect={'/signup'}
-              render={(props) => (
-                <Search {...props} loggedUser={this.state.loggedUser} />
-              )}
-            />
-            <Route exact path="/" component={LandingPage} />
-          </Switch>
-        </BrowserRouter>
+        {this.state.loaded && (
+          <BrowserRouter>
+            <Navbar loggedUser={this.state.loggedUser} {...this.props} />
+            <Switch>
+              <Route
+                path="/signin"
+                render={(props) => (
+                  <AuthenticationSignIn
+                    {...props}
+                    updateUser={this.updateUser}
+                  />
+                )}
+              />
+              <Route
+                path="/signup"
+                render={(props) => (
+                  <AuthenticationSignUp
+                    {...props}
+                    updateUser={this.updateUser}
+                  />
+                )}
+              />
+              <Route
+                path="/signout"
+                render={(props) => (
+                  <LandingPage {...props} updateUser={this.updateUser} />
+                )}
+              />
+              <Route
+                path="/posts"
+                render={(props) => <PostList {...props} />}
+              />
+              <ProtectedRoute
+                path="/post/add"
+                authorized={this.state.loggedUser}
+                loggedUser={this.state}
+                redirect={'/signup'}
+                render={(props) => <PostCreate {...props} />}
+              />
+              <ProtectedRoute
+                exact
+                path="/profile/:id"
+                authorized={this.state.loggedUser}
+                redirect={'/signup'}
+                render={(props) => (
+                  <Profile {...props} loggedUser={this.state.loggedUser} />
+                )}
+              />
+              <Route
+                path="/search"
+                redirect={'/signup'}
+                render={(props) => <Search {...props} />}
+              />
+              <Route exact path="/" component={LandingPage} />
+
+              <ProtectedRoute
+                exact
+                path="/profile/:id/edit"
+                authorized={this.state.loggedUser}
+                redirect={'/signup'}
+                render={(props) => <EditProfile {...props} />}
+              />
+            </Switch>
+          </BrowserRouter>
+        )}
       </div>
     );
   }

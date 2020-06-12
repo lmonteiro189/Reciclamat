@@ -3,6 +3,9 @@
   flex-direction: column;
   background-color: #f9f9f9;
   min-height: calc(100vh - 56px);
+  a {
+    color: black;
+  }
 
   .buttons-container {
     background-color: #2fb86e;

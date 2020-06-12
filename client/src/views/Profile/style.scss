@@ -1,9 +1,9 @@
 
 .profile-container {
-  margin-top: 2em;
+  padding-top: 30px;
   width: 100%;
+  min-height: calc(100vh - 56px);
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   h6,
@@ -79,19 +79,37 @@
   .column{
     flex-direction: column;
     display: flex;
+    flex-wrap: wrap;
+    background-color: #Fff;
+    min-height: 100px;
+    max-width: 100%;
+    margin: 10px;
+    padding: 10px 0;
+    border: 1px solid #d3d3d3;
+    h3 {
+      font-size: 1em;
+      display: flex;
+      align-self: center;
+      color: #2fb86e;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #2fb86e;
+    }
     .all-items {
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       .material-items {
         width: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 10px;
+        margin: 5px;
         p {
           margin: 0;
         }
+        
     }
     
     }
@@ -114,8 +132,8 @@
 
   }
   .material-image {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
   }
   li {

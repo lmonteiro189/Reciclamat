@@ -33,22 +33,38 @@ const NavBar = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link>
-              <Link to="/posts">Posts</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to={`/profile/${userId}`}>Profile</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/post/add">Create a Post</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/search">Search Materials</Link>
-            </Nav.Link>
             {props.loggedUser ? (
-              <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+              <>
+                <Nav.Link eventKey="/posts" as={Link} to="/posts">
+                  Posts
+                </Nav.Link>
+                <Nav.Link eventKey="/post/add" as={Link} to="/post/add">
+                  Create Post
+                </Nav.Link>
+                <Nav.Link eventKey="/search" as={Link} to="/search">
+                  Search Materials
+                </Nav.Link>
+                <Nav.Link
+                  eventKey={`/profile/${userId}`}
+                  as={Link}
+                  to={`/profile/${userId}`}
+                >
+                  Profile
+                </Nav.Link>
+                <Nav.Link onClick={() => logout()}>Sign out</Nav.Link>
+              </>
             ) : (
-              <Nav.Link href="/signin">Sign in</Nav.Link>
+              <>
+                <Nav.Link eventKey="/posts" as={Link} to="/posts">
+                  Posts
+                </Nav.Link>
+                <Nav.Link eventKey="/search" as={Link} to="/search">
+                  Search Materials
+                </Nav.Link>
+                <Nav.Link eventKey="/signin" as={Link} to="/signin">
+                  Sign in
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

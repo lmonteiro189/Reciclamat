@@ -38,7 +38,7 @@ const AuthenticationSignUp = (props) => {
   }
 
   return (
-    <div>
+    <div className="signup-container">
       <Form onSubmit={handleSubmitForm}>
         <Form.Group>
           <Form.Control

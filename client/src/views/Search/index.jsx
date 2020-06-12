@@ -5,6 +5,7 @@ import './style.scss';
 import SimpleMap from './../../../src/components/Map/SimpleMap';
 import { listPosts } from './../../services/posts';
 import Materials from './../../components/Materials';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [posts, setPosts] = useState([]);
@@ -42,16 +43,16 @@ const Search = () => {
         </button>
       </section>
       <Materials multiple={true} handleMaterials={handleMaterials} />
-      <div className="map-container">
+{/*       <div className="map-container">
         <SimpleMap />
-      </div>
+      </div> */}
       {posts.map((post) => {
         console.log(post);
         return (
           <div className="post-box" key={post._id}>
             <img src={post.userCreator.avatar} alt="" />
             <div className="user-data">
-              <strong>{post.userCreator.name}</strong>
+              <strong><Link to={`/profile/${post.userCreator._id}`}>{post.userCreator.name}</Link></strong>
               <p>{post.material}</p>
             </div>
           </div>
