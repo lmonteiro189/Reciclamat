@@ -47,6 +47,7 @@ const PostCreate = (props) => {
   };
 
   const handleSubmitForm = () => {
+    console.log(props.loggedUser);
     createPost({ ...formData, userCreator: props.loggedUser._id })
     .then((res) => props.history.push('/posts'))
   };

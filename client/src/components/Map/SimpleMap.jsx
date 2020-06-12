@@ -1,75 +1,41 @@
-import React, { Component } from 'react';
-import GoogleMap from 'google-map-react';
+import React, { Component, useState, useEffect } from 'react';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 
 import './index.scss';
 
-class SimpleMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      marker: {
-        lat: null,
-        lng: null
-      },
-      initialPosition: {
-        lat: 38,
-        lng: -9
-      }
-    };
+const SimpleMap = (props) => {
+  const [selectedPosition, setSelectedPosition] = useState([0, 0]);
+  const [initialPosition, setInitialPosition] = useState([0, 0]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log('position: ', position);
+      setInitialPosition([position.coords.latitude, position.coords.longitude]);
+    });
+  }, []);
+
+  function handleMapClick(event) {
+    // event.preventDefault();
+    const { lat, lng } = event.latlng;
+    setSelectedPosition([lat, lng]);
+    props.handleLocation(lat, lng);
   }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) =>
-      this.setState({
-        ...this.state,
-        initialPosition: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-      })
-    );
-  }
+  return (
+    // Important! Always set the container height explicitly
+    <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+      <TileLayer
+        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+      <Marker position={selectedPosition} />
 
-  handleMapClick = ({ lat, lng }) => {
-    this.setState({ marker: { lat, lng } });
-    this.props.handleLocation(lat, lng);
-  };
-
-  render() {
-    return (
-      // Important! Always set the container height explicitly
-      <div className="map">
-        <GoogleMap
-          apiKey={process.env.REACT_APP_key}
-          defaultCenter={{
-            lat: this.state.initialPosition.lat,
-            lng: this.state.initialPosition.lng
-          }}
-          defaultZoom={11}
-          onClick={this.handleMapClick}
-          distanceToMouse={() => {}}
-        >
-          {this.state.marker.lat !== null && (
-            <small lat={this.state.marker.lat} lng={this.state.marker.lng}>
-              My Marker
-            </small>
-          )}
-        </GoogleMap>
-        {/* <GoogleMapReact
-          style={{ height: '100vh', width: '100%' }}
-          bootstrapURLKeys={{ key: process.env.REACT_APP_key }}
-          defaultCenter={{
-            lat: 38.75,
-            lng: -9
-          }}
-          defaultZoom={11}
-        >
-          {/* <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
-        </GoogleMapReact> */}
-      </div>
-    );
-  }
-}
+      {props.locations?.map((location, index) => {
+        return <Marker key={index} position={[38, -9]} />;
+      })}
+    </Map>
+  );
+};
 export default SimpleMap;
 
 // static defaultProps = {

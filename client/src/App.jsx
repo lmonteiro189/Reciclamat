@@ -69,14 +69,14 @@ class App extends Component {
               />
               <Route
                 path="/posts"
-                render={(props) => <PostList {...props} />}
+                render={(props) => <PostList {...props} loggedUser={this.state.loggedUser} />}
               />
               <ProtectedRoute
                 path="/post/add"
                 authorized={this.state.loggedUser}
                 loggedUser={this.state}
                 redirect={'/signup'}
-                render={(props) => <PostCreate {...props} />}
+                render={(props) => <PostCreate {...props} loggedUser={this.state.loggedUser} />}
               />
               <ProtectedRoute
                 exact

@@ -5,7 +5,7 @@ import Comment from './../../../components/Comment';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-const PostList = () => {
+const PostList = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [selectedKind, setSelectedKind] = useState('produtos');
@@ -19,12 +19,12 @@ const PostList = () => {
   const receiveComment = (message, postid) => {
     addComment({
       message,
-      userCreator: '5ee0eb371457bc1e5cf71e48',
+      userCreator: props.loggedUser?._id,
       post: postid
     }).then(() => {
       posts.forEach((post) => {
         if (post._id === postid) {
-          post.comment.push({ message });
+          post.comment.push({ message, userCreator: props.loggedUser });
         }
       });
       setPosts([...posts]);
@@ -41,8 +41,6 @@ const PostList = () => {
 
   return (
     <div className="social-container">
-      
-    
       <div className="posts">
         {isLoading ? (
           <small>loading...</small>
@@ -51,9 +49,15 @@ const PostList = () => {
             return (
               <div key={post._id} className="social-post">
                 <div className="photo-name-post">
-                  <img src={post.userCreator.avatar} alt="" className="user-image" />
+                  <img
+                    src={post.userCreator.avatar}
+                    alt=""
+                    className="user-image"
+                  />
                   <p className="post-creator">
-                    <Link to={`/profile/${post.userCreator._id}`}>{post.userCreator.name}</Link>
+                    <Link to={`/profile/${post.userCreator._id}`}>
+                      {post.userCreator.name}
+                    </Link>
                   </p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />
@@ -62,11 +66,18 @@ const PostList = () => {
                 {post.comment.map((comment) => {
                   return (
                     <div className="comment" key={comment._id}>
+                      <img
+                        src={comment.userCreator?.avatar}
+                        alt=""
+                        className="user-image"
+                      />
                       <p>{comment.message}</p>
                     </div>
                   );
                 })}
-                <Comment receiveComment={receiveComment} postId={post._id} />
+                {props.loggedUser && (
+                  <Comment receiveComment={receiveComment} postId={post._id} />
+                )}
               </div>
             );
           })

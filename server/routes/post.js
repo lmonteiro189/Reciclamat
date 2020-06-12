@@ -24,7 +24,13 @@ router.get('/', (req, res, next) => {
   Post.find(filter)
     .sort({ 'timestamps.updatedAt': -1 })
     .populate('userCreator')
-    .populate('comment')
+    .populate({
+      path: 'comment',
+      populate: {
+        path: 'userCreator'
+      }
+    })
+    .populate()
     .then((posts) => {
       res.json(posts);
     })
