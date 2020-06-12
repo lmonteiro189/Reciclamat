@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.scss';
+import {Link} from 'react-router-dom';
 import { getUser } from '../../services/user';
 import { deletePost } from '../../services/posts';
 import glass from './../../images/glass.svg';

@@ -19,20 +19,31 @@
     margin: 0 auto;
   }
 
-  .user-data {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+
   .box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    .user-data {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      .edit {
+        border: none;
+        color: #fff;
+        font-weight: 300;
+        background-color: #2fb86e;
+        border-radius: 5px;
+        font-size: 0.9em;
+        width: 80px;
+        padding: 1px;
+      }
+    }
   }
 
   
