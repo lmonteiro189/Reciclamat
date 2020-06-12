@@ -22,27 +22,21 @@ router.get('/:id', async (req, res, next) => {
     const posts = await Post.find({ userCreator: userId });
     const { _id, name, email, avatar } = user;
 
-    return res.json({_id, name, email, avatar, posts });
+    return res.json({ _id, name, email, avatar, posts });
   } catch (error) {
     next(error);
   }
 });
 
-router.post('', uploader.single('avatar'), async (req, res) => {
+router.patch('/:id', uploader.single('avatar'), async (req, res) => {
   try {
-    console.log(req.body);
-    const { name, email, password } = req.body;
-    console.log(req.file);
-    const avatar = req.file.path;
-    const passwordHash = await bcrypt.hash(password, 10);
-
-    const alredyExists = await User.findOne({ email });
-    if (alredyExists) {
-      throw new Error('User already exists');
+    const user = { name: req.body.name };
+    if (req.file) {
+      user.avatar = req.file.path;
     }
-
-    const user = await User.create({ name, email, passwordHash, avatar });
-    res.status(201).json(user);
+    const userId = req.params.id;
+    const newUser = await User.findByIdAndUpdate(userId, user);
+    res.status(200).json(newUser);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: error.message });

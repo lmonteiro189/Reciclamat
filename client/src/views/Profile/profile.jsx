@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.scss';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUser } from '../../services/user';
 import { deletePost } from '../../services/posts';
 import glass from './../../images/glass.svg';
@@ -30,6 +30,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     getUser(props.match.params.id).then((res) => {
+      console.log(res)
       const posts = [...res.posts];
       res.posts = {
         doando: posts.filter((post) => post.kind === 'doar'),
@@ -42,7 +43,9 @@ const Profile = (props) => {
 
   useEffect(() => {
     if (props.loggedUser) {
-      setIsOwner(props.loggedUser._id.toString() == props.match.params.id.toString());
+      setIsOwner(
+        props.loggedUser._id.toString() == props.match.params.id.toString()
+      );
     }
   }, [props]);
 
@@ -68,12 +71,16 @@ const Profile = (props) => {
           <h6 className="user-name"> {user.name}</h6>
           <img className="user-avatar" src={user.avatar} />
           <small className="contact">Contact | {user.email}</small>
-          {isOwner && <button className="edit">Edit Profile</button>}
+          {isOwner && (
+            <button className="edit">
+              <Link to={`/profile/${user._id}/edit`}>Edit Profile</Link>
+            </button>
+          )}
           {/* <button><Link to="/profile/edit/:id>Edit Profile</Link></button> */}
         </div>
         <div className="user-posts">
           <div className="column">
-          <h3>Doar</h3>
+            <h3>Doar</h3>
             <div className="all-items">
               {user.posts?.doando.map((post) => {
                 return (

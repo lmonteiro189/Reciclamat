@@ -43,42 +43,67 @@ class App extends Component {
           <Switch>
             <Route
               path="/signin"
-              render={(props) => <AuthenticationSignIn {...props} updateUser={this.updateUser} />}
+              render={(props) => (
+                <AuthenticationSignIn {...props} updateUser={this.updateUser} />
+              )}
             />
             <Route
               path="/signup"
-              render={(props) => <AuthenticationSignUp {...props} updateUser={this.updateUser} />}
+              render={(props) => (
+                <AuthenticationSignUp {...props} updateUser={this.updateUser} />
+              )}
             />
             <Route
               path="/signout"
-              render={(props) => <LandingPage {...props} updateUser={this.updateUser} />}
+              render={(props) => (
+                <LandingPage {...props} updateUser={this.updateUser} />
+              )}
             />
             <Route
               path="/posts"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
-              render={(props) => <PostList {...props} loggedUser={this.state.loggedUser} />}
+              render={(props) => (
+                <PostList {...props} loggedUser={this.state.loggedUser} />
+              )}
             />
             <ProtectedRoute
               path="/post/add"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
-              render={(props) => <PostCreate {...props} loggedUser={this.state.loggedUser} />}
+              render={(props) => (
+                <PostCreate {...props} loggedUser={this.state.loggedUser} />
+              )}
             />
+            
             <Route
+            exact
               path="/profile/:id"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
-              render={(props) => <Profile {...props} loggedUser={this.state.loggedUser} />}
+              render={(props) => (
+                <Profile {...props} loggedUser={this.state.loggedUser} />
+              )}
+            />
+            <Route
+            exact
+              path="/profile/:id/edit"
+              authorized={this.state.loggedUser}
+              redirect={'/signup'}
+              render={(props) => (
+                <EditProfile {...props} />
+              )}
             />
             <ProtectedRoute
               path="/search"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
-              render={(props) => <Search {...props} loggedUser={this.state.loggedUser} />}
+              render={(props) => (
+                <Search {...props} loggedUser={this.state.loggedUser} />
+              )}
             />
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/profile/edit/:id" component={EditProfile} />
+
           </Switch>
         </BrowserRouter>
       </div>
