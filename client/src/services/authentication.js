@@ -9,7 +9,7 @@ const signUp = (body) => {
   form.append('name', body.name);
   form.append('email', body.email);
   form.append('password', body.password);
-  form.append('avatar', body.avatar);
+  form.append('avatar', body.selectedFile);
 
   return authenticationServer
     .post('/sign-up', form)

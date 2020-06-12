@@ -1,20 +1,20 @@
 // 'use strict';
 
-// import React, { Component } from 'react';
-// import './style.scss';
+import React, { Component } from 'react';
+import './style.scss';
 // import { getUser } from '../../services/user';
 // import axios from 'axios';
 
-// class EditProfile extends Component {
-// constructor(props){
-//     super(props);
-//     this.state = {
-//         id: '',
-//         name: '',
-//         avatar: '',
-//         email: ''
-//     }
-// }
+class EditProfile extends Component {
+ constructor(props){
+     super(props);
+     this.state = {
+         id: '',
+         name: '',
+         avatar: '',
+         email: ''
+     }
+ };
 // componentWillMount(){
 //     this.getUserDetails();
 // }
@@ -77,30 +77,30 @@
 //         })
 //       }
 
-//   render() {
-//     return (
-//       <div>
-//           <br/>
-//         <h3>Edit profile</h3>
-//         <form onSubmit={this.handleSubmit}>
-//             <div className="name-input">
-//                 <input type="text" name="name "ref="name" value={this.state.name} onChange={this.handleChange}/>
-//                 <label htmlFor="name">Name</label>
-//             </div>
-//             <div className="avatar-input">
-//                 <input type="file" name="avatar "ref="avatar" value={this.state.avatar} onChange={this.handleChange}/>
-//                 <label htmlFor="avatar">Change profile image</label>
-//             </div>
-//             <div className="email-input">
-//                 <input type="text" name="email "ref="email" value={this.state.email} onChange={this.handleChange}/>
-//                 <label htmlFor="">email</label>
-//             </div>
-//            <input type="submit" value="save" className="btn"/>
+   render() {
+     return (
+       <div>
+           <br/>
+         <h3>Edit profile</h3>
+         <form onSubmit={this.handleSubmit}>
+             <div className="name-input">
+                 <input type="text" name="name "ref="name" value={this.state.name} onChange={this.handleChange}/>
+                 <label htmlFor="name">Name</label>
+             </div>
+             <div className="avatar-input">
+                 <input type="file" name="avatar "ref="avatar" value={this.state.avatar} onChange={this.handleChange}/>
+                 <label htmlFor="avatar">Change profile image</label>
+             </div>
+             <div className="email-input">
+                 <input type="text" name="email "ref="email" value={this.state.email} onChange={this.handleChange}/>
+                 <label htmlFor="">email</label>
+             </div>
+            <input type="submit" value="save" className="btn"/>
 
-//         </form>
-//       </div>
-//     );
-//   }
-// }
+         </form>
+       </div>
+     )
+   }
+}
 
-// export default EditProfile;
+export default EditProfile;
