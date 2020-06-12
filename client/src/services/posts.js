@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const basePostsServices = axios.create({
-  baseURL: 'http://localhost:3010/api/posts'
+  baseURL: '/api/posts'
 });
 
 const listPosts = (kind, materials) => {

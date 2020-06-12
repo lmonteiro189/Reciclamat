@@ -2,7 +2,7 @@ import axios from 'axios';
 // import Comment from './../../src/components/Comment';
 
 const baseCommentServices = axios.create({
-  baseURL: 'http://localhost:3010/api/comment'
+  baseURL: '/api/comment'
 });
 
 const addComment = (comment) => {

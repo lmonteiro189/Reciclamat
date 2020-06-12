@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const authenticationServer = axios.create({
-  baseURL: 'http://localhost:3010/api/authentication'
+  baseURL: '/api/authentication'
 });
 
 const signUp = (body) => {

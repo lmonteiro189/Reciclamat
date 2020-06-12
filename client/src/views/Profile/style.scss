@@ -35,14 +35,7 @@
     width: 100%;
   }
 
-  .edit {
-    border: none;
-    color: #fff;
-    font-weight: 300;
-    background-color: #2fb86e;
-    border-radius: 5px;
-    font-size: 1em;
-    width: 100px;
+  
 
     &:active {
       position: relative;
@@ -66,10 +59,56 @@
   }
   .user-posts {
     display: flex;
-    width: 250px;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     margin-top: 20px;
+    flex-direction: column;
+    
+  }
+  .column{
+    flex-direction: column;
+    display: flex;
+    .all-items {
+      width: 100%;
+      display: flex;
+      .material-items {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        p {
+          margin: 0;
+        }
+    }
+    
+    }
+    .edit {
+      border: none;
+      color: #fff;
+      font-weight: 300;
+      background-color: #2fb86e;
+      border-radius: 5px;
+      font-size: 0.9em;
+      width: 70px;
+    .material-items {
+      display: flex;
+      .image-and-material{
+        border: 1px solid #f9f9f9;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+  }
+  .material-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+  li {
+    list-style: none;
   }
   .post {
     display: flex;

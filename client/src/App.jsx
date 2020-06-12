@@ -64,7 +64,7 @@ class App extends Component {
               redirect={'/signup'}
               render={(props) => <PostCreate {...props} loggedUser={this.state.loggedUser} />}
             />
-            <ProtectedRoute
+            <Route
               path="/profile/:id"
               authorized={this.state.loggedUser}
               redirect={'/signup'}
