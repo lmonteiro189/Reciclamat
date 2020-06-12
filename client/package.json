@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3010"
+  "proxy": "https://reciclamat.herokuapp.com"
 }

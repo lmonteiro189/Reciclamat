@@ -23,7 +23,10 @@ const app = express();
 app.use(express.static(join(__dirname, '../client/build')));
 
 //CORS config
-app.use(cors());
+cors({
+  credentials: true,
+  origin: ['http://localhost:3000', 'https://reciclamat.herokuapp.com']
+});
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
