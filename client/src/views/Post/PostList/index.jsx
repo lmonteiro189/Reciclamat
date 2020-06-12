@@ -47,7 +47,7 @@ const PostList = () => {
           name="produtos"
           className={selectedKind === 'produtos' && 'selected'}
         >
-          Produtos
+          Products
         </button>
         <div className="divider"></div>
         <button
@@ -55,7 +55,7 @@ const PostList = () => {
           name="doar"
           className={selectedKind === 'doar' && 'selected'}
         >
-          Doando
+          Donate
         </button>
         <div className="divider"></div>
         <button
@@ -63,7 +63,7 @@ const PostList = () => {
           name="receber"
           className={selectedKind === 'receber' && 'selected'}
         >
-          Recebendo
+          Receive
         </button>
       </div>
       <div className="posts">
@@ -74,15 +74,9 @@ const PostList = () => {
             return (
               <div key={post._id} className="social-post">
                 <div className="photo-name-post">
-                  <img
-                    src={post.userCreator.avatar}
-                    alt=""
-                    className="user-image"
-                  />
+                  <img src={post.userCreator.avatar} alt="" className="user-image" />
                   <p className="post-creator">
-                    <Link to={`/profile/${post.userCreator._id}`}>
-                      {post.userCreator.name}
-                    </Link>
+                    <Link to={`/profile/${post.userCreator._id}`}>{post.userCreator.name}</Link>
                   </p>
                 </div>
                 <img src={post.image} alt="" className="post-image" />

@@ -78,7 +78,7 @@ class App extends Component {
               render={(props) => <Search {...props} loggedUser={this.state.loggedUser} />}
             />
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/profile/edit/:id" component={EditProfile} />
+            {/* <Route exact path="/profile/edit/:id" component={EditProfile} /> */}
           </Switch>
         </BrowserRouter>
       </div>
