@@ -5,6 +5,9 @@ out the app](https://reciclamat.herokuapp.com)
 
 
 <p>📱 We are mobile friendly!</p>
+
+![reciclamat](https://github.com/lmonteiro189/Reciclamat/blob/master/reciclamat.png)
+
 <br>
 <h3>Build with</h3>
 <ul>JS ES6</ul>
