@@ -1,4 +1,4 @@
-<h1>Reciclamat</h1>
+<h1>♻️   Reciclamat</h1>
 
 [Check 
 out the app](https://reciclamat.herokuapp.com)
