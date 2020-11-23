@@ -1,7 +1,6 @@
 <h1>♻️   Reciclamat</h1>
 
-[Check 
-out the app](https://reciclamat.herokuapp.com)
+[Check the app](https://reciclamat.herokuapp.com)
 
 
 <p>📱 We are mobile friendly!</p>
